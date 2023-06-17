@@ -16,4 +16,7 @@ export class WeatherService {
   getData(): Observable<ResponWeather> {
     return this.http.get<ResponWeather>(`${this.url}weather?q=${this.city}&appid=${this.key}&units=metric`);
   }
+  getDataForcast(): Observable<any> {
+    return this.http.get<any>(`${this.url}forcast?q=${this.city}&appid=${this.key}`);
+  }
 }
