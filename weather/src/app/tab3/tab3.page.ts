@@ -11,9 +11,9 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
   imports: [IonicModule, ExploreContainerComponent,CommonModule],
 })
 export class Tab3Page {
-  public fav;
+  public favorites: any[];
   constructor() {
-    this.fav = JSON.parse(localStorage.getItem('fav')|| '{}');
-    console.log(this.fav);
+    this.favorites = JSON.parse(localStorage.getItem('favorites')|| '[]');
+    console.log(this.favorites);
   }
 }

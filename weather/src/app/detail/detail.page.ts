@@ -25,7 +25,15 @@ export class DetailPage implements OnInit {
   ngOnInit(): void {}
   
   save() {
-    localStorage.setItem('fav', JSON.stringify(this.weather));
+   const storage = localStorage.getItem('favorites');
+   let favorites = [];
+
+   if (storage){
+    favorites =JSON.parse(storage);
+   }
+
+   favorites.push(this.weather);
+   localStorage.setItem('favorites',JSON.stringify(favorites));
   }
 
 }
