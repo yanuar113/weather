@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from 'rxjs';
-import { ResponWeather } from '../tab1/weather';
+import { Observable } from 'rxjs';
+import { ResponseWeather } from '../tab1/weather';
+import { ResponseForecast } from '../tab2/response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
   url = 'https://api.openweathermap.org/data/2.5/';
-  key = 'b014ed782a8129bd3f8401ec75037ac3';
+  key = '5a9df04efb69fd310294ba6298d05db6';
   city = 'Sleman';
 
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<ResponWeather> {
-    return this.http.get<ResponWeather>(`${this.url}weather?q=${this.city}&appid=${this.key}&units=metric`);
+  getData(): Observable<ResponseWeather> {
+    return this.http.get<ResponseWeather>(`${this.url}weather?q=${this.city}&appid=${this.key}&units=metric`);
   }
-  getDataForcast(): Observable<any> {
-    return this.http.get<any>(`${this.url}forcast?q=${this.city}&appid=${this.key}`);
+
+  getDataForecast(): Observable<ResponseForecast> {
+    return this.http.get<ResponseForecast>(`${this.url}forecast?q=${this.city}&appid=${this.key}`);
   }
 }

@@ -1,18 +1,25 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">w</ion-buttons>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="cloud-outline">
+      </ion-icon>
+    </ion-buttons>
+    <ion-title>Forecast</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content>
+  <ion-item *ngFor="let forecast of forecasts">
+    <ion-grid (click)="detailpage(forecast)">
+      <ion-row>
+        <img src="http://openweathermap.org/img/wn/{{forecast.weather[0].icon}}@2x.png" alt="img" width="80" />
+        <ion-col class="label">
+            <h5 class="fw-bold">{{forecast.weather[0].main}} - {{forecast.weather[0].description}}</h5>
+            <label class="text-gray">{{kelvinToCelsius(forecast.main.temp)}}° C</label><br />
+            <label class="text-gray">{{kelvinToCelsius(forecast.main.temp_min)}} - {{kelvinToCelsius(forecast.main.temp_max)}}° C</label><br />
+            <i class="text-gray">{{formatDate(forecast.dt).replace(',', ' -')}}</i>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
 </ion-content>
